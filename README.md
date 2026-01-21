@@ -127,9 +127,9 @@ The total loss is a weighted combination of:
 
 ## 🙋‍♂️ Author
 
-**Syed Muhammad Faizan Ali** 📍 Islamabad, Pakistan
-
-📧 [faizandev666@gmail.com](mailto:faizandev666@gmail.com)
+**Syed Muhammad Faizan Ali**  
+📍 Islamabad, Pakistan  
+📧 faizandev666@gmail.com  
 🔗 [GitHub](https://github.com/Slayer9966) | [LinkedIn](https://www.linkedin.com/in/faizan-ali-7b4275297/)
 ---
 
@@ -137,4 +137,4 @@ The total loss is a weighted combination of:
 
 ---
 
-**Would you like me to help you create a "Quick Start" guide for the inference script so users can test it immediately?**
+
