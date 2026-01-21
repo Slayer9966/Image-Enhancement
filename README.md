@@ -1,22 +1,8 @@
 
-### ✅ What you SHOULD do
-- Paste the content **directly** into `README.md`
-- Use code blocks **only where needed** (`bash`, `text`)
-- No outer wrapper
 
----
-
-## ✅ COPY-PASTE THIS (FINAL, CORRECT README)
-
-Paste **exactly this** into `README.md` — nothing before it, nothing after it.
-
----
-
-```markdown
 # Hybrid Image Enhancement using Learned RGB Curves & Bilateral Grid
 
-This project implements a **deep learning–based image enhancement system** that improves fine image details while preserving natural colors.  
-The model predicts **adaptive RGB curves** using a CNN encoder and applies both **global** and **local (bilateral-grid–based)** corrections in a fully differentiable manner.
+This project implements a **deep learning–based image enhancement system** that improves fine image details while preserving natural colors. The model predicts **adaptive RGB curves** using a CNN encoder and applies both **global** and **local (bilateral-grid–based)** corrections in a fully differentiable manner.
 
 The approach avoids traditional fixed image processing pipelines and instead **learns content-aware color transformations directly from data**.
 
@@ -27,24 +13,26 @@ The approach avoids traditional fixed image processing pipelines and instead **l
 The enhancement pipeline is composed of two complementary components:
 
 ### 1. Global RGB Curve
-- Captures overall tone, contrast, and color balance
-- Provides a stable base enhancement for the entire image
+
+* Captures overall tone, contrast, and color balance.
+* Provides a stable base enhancement for the entire image.
 
 ### 2. Local Bilateral Grid Correction
-- Applies spatially and intensity-aware residual corrections
-- Refines fine local details missed by the global curve
 
-Both components are predicted jointly by a neural network and applied using differentiable curve interpolation.
+* Applies spatially and intensity-aware residual corrections.
+* Refines fine local details missed by the global curve.
+
+**Both components are predicted jointly by a neural network and applied using differentiable curve interpolation.**
 
 ---
 
 ## 🧠 Model Architecture
 
-- **Encoder:** ResNet-18 (ImageNet pretrained)
-- **Global Head:** Predicts one RGB curve per image
-- **Local Head:** Predicts a bilateral grid of RGB curves
-- **Curve Representation:** Discrete monotonic RGB curves learned via `softmax + cumulative sum`
-- **Enhancement:** Piecewise linear interpolation per pixel
+* **Encoder:** ResNet-18 (ImageNet pretrained)
+* **Global Head:** Predicts one RGB curve per image
+* **Local Head:** Predicts a bilateral grid of RGB curves
+* **Curve Representation:** Discrete monotonic RGB curves learned via `softmax + cumulative sum`
+* **Enhancement:** Piecewise linear interpolation per pixel
 
 ---
 
@@ -63,6 +51,7 @@ Both components are predicted jointly by a neural network and applied using diff
 ├── train.py                    # Training script
 ├── inference.py                # Inference script
 └── README.md
+
 ```
 
 ---
@@ -75,27 +64,33 @@ Install dependencies using:
 pip install torch torchvision torchaudio
 pip install opencv-python numpy kornia
 pip install segmentation-models-pytorch
+
 ```
 
-> **Note:** CUDA is strongly recommended for training.
+> [!IMPORTANT]
+> CUDA is strongly recommended for training to ensure efficient performance.
 
 ---
 
 ## 🚀 Training
 
-To start training the model:
+To start training the model, run:
 
 ```bash
 python train.py
+
 ```
 
 ### Training Details
-- Mixed precision training (AMP)
-- AdamW optimizer
-- ReduceLROnPlateau learning rate scheduler
-- Automatic checkpoint saving:
-  - `latest_bilateral_model.pth`
-  - `best_bilateral_model.pth`
+
+* **Mixed precision training (AMP)** for faster execution.
+* **AdamW optimizer** with weight decay.
+* **ReduceLROnPlateau** learning rate scheduler.
+* **Automatic checkpoint saving:**
+* `latest_bilateral_model.pth`
+* `best_bilateral_model.pth`
+
+
 
 ---
 
@@ -103,75 +98,43 @@ python train.py
 
 The total loss is a weighted combination of:
 
-- **L1 Loss** – pixel-wise reconstruction accuracy
-- **SSIM Loss** – perceptual structural similarity
-- **Total Variation (TV) Regularization**
-  - Spatial smoothness
-  - Intensity-depth smoothness for the bilateral grid
+1. **L1 Loss:** Pixel-wise reconstruction accuracy.
+2. **SSIM Loss:** Perceptual structural similarity.
+3. **Total Variation (TV) Regularization:** * Ensures spatial smoothness.
+* Maintains intensity-depth smoothness for the bilateral grid.
 
-This encourages:
-- High visual fidelity
-- Smooth local transitions
-- Stable and monotonic RGB curves
+
 
 ---
 
 ## 🖼️ Data Handling
 
-- Images are resized while preserving aspect ratio
-- Reflection padding is used to reach a fixed square resolution
-- Optional horizontal flip augmentation
-- Input and GT images are normalized to `[0, 1]`
+* **Aspect Ratio:** Images are resized while preserving the original aspect ratio.
+* **Padding:** Reflection padding is used to reach a fixed square resolution.
+* **Augmentation:** Optional horizontal flip augmentation.
+* **Normalization:** Input and GT images are normalized to `[0, 1]`.
 
 ---
 
 ## ✨ Highlights
 
-- Fully differentiable image enhancement pipeline
-- Learned RGB curves instead of fixed filters
-- Combines global consistency with local detail refinement
-- Robust to lighting variations
-- Designed for high-resolution image processing
-
----
-
-## 🔒 Notes
-
-- This repository focuses on **training and experimentation**
-- Core ideas are implemented for research and controlled usage
-- Model weights and internal strategies may be adapted for production systems
+* **Fully Differentiable:** The entire enhancement pipeline can be trained end-to-end.
+* **Learned Curves:** Uses data-driven RGB curves instead of fixed mathematical filters.
+* **Hybrid Approach:** Combines global consistency with local detail refinement.
+* **High-Res Ready:** Designed to handle high-resolution image processing efficiently.
 
 ---
 
 ## 🙋‍♂️ Author
 
-**Syed Muhammad Faizan Ali**  
-📍 Islamabad, Pakistan  
+**Syed Muhammad Faizan Ali** 📍 Islamabad, Pakistan
+
 📧 [faizandev666@gmail.com](mailto:faizandev666@gmail.com)
+🔗 [GitHub](https://github.com/Slayer9966) | [LinkedIn](https://www.linkedin.com/in/faizan-ali-7b4275297/)
+---
+
+
 
 ---
 
-## 📜 License
-
-This project is intended for educational and research purposes.
-```
-
----
-
-## 🧠 Golden Rule (Remember This Forever)
-
-- ❌ Never wrap the **entire README** in ```markdown
-- ✅ Only wrap:
-  - commands → ```bash
-  - directory trees → ```text
-  - code → ```python
-
----
-
-If you want next, I can:
-- 🔐 Make a **public / IP-safe README**
-- 🚀 Add a **clean inference section**
-- 📄 Convert this into a **paper-style README**
-- ⭐ Optimize it for **GitHub stars & recruiters**
-
-Just say the word.
+**Would you like me to help you create a "Quick Start" guide for the inference script so users can test it immediately?**
