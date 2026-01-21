@@ -123,7 +123,7 @@ The total loss is a weighted combination of:
 * **Hybrid Approach:** Combines global consistency with local detail refinement.
 * **High-Res Ready:** Designed to handle high-resolution image processing efficiently.
 
----
+
 
 ## 🙋‍♂️ Author
 
@@ -131,7 +131,7 @@ The total loss is a weighted combination of:
 📍 Islamabad, Pakistan  
 📧 faizandev666@gmail.com  
 🔗 [GitHub](https://github.com/Slayer9966) | [LinkedIn](https://www.linkedin.com/in/faizan-ali-7b4275297/)
----
+
 
 
 
