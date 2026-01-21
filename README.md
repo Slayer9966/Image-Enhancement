@@ -1,11 +1,12 @@
 
+
 ---
 
-```markdown
+````markdown
 # Hybrid Image Enhancement using Learned RGB Curves & Bilateral Grid
 
 This project implements a **deep learning–based image enhancement system** that improves fine image details while preserving natural colors.  
-The model predicts **adaptive RGB curves** using a CNN encoder and applies both **global** and **local (bilateral-grid–based)** corrections in a differentiable manner.
+The model predicts **adaptive RGB curves** using a CNN encoder and applies both **global** and **local (bilateral-grid–based)** corrections in a fully differentiable manner.
 
 The approach avoids traditional fixed image processing pipelines and instead **learns content-aware color transformations directly from data**.
 
@@ -13,15 +14,15 @@ The approach avoids traditional fixed image processing pipelines and instead **l
 
 ## 🔍 Key Idea
 
-The enhancement pipeline is composed of two complementary parts:
+The enhancement pipeline is composed of two complementary components:
 
-1. **Global RGB Curve**
-   - Captures the overall tone, contrast, and color balance of the image
-   - Provides a stable base enhancement
+### 1. Global RGB Curve
+- Captures overall tone, contrast, and color balance
+- Provides a stable base enhancement for the entire image
 
-2. **Local Bilateral Grid Correction**
-   - Applies spatially and intensity-aware residual corrections
-   - Refines local details that the global curve cannot capture
+### 2. Local Bilateral Grid Correction
+- Applies spatially and intensity-aware residual corrections
+- Refines fine local details missed by the global curve
 
 Both components are predicted jointly by a neural network and applied using differentiable curve interpolation.
 
@@ -32,28 +33,26 @@ Both components are predicted jointly by a neural network and applied using diff
 - **Encoder:** ResNet-18 (ImageNet pretrained)
 - **Global Head:** Predicts one RGB curve per image
 - **Local Head:** Predicts a bilateral grid of RGB curves
-- **Curve Representation:** Discrete monotonic RGB curves learned via softmax + cumulative sum
+- **Curve Representation:** Discrete monotonic RGB curves learned via `softmax + cumulative sum`
 - **Enhancement:** Piecewise linear interpolation per pixel
 
 ---
 
 ## 📂 Project Structure
 
-```
-
+```text
 .
 ├── DataSet_Resized/
-│   ├── Images/          # Input images
-│   └── GT/              # Ground-truth enhanced images
+│   ├── Images/                 # Input images
+│   └── GT/                     # Ground-truth enhanced images
 │
 ├── models/
 │   ├── latest_bilateral_model.pth
 │   └── best_bilateral_model.pth
 │
-├── train.py             # Main training script
-├── inference.py         #inferenceScript
+├── train.py                    # Training script
+├── inference.py                # Inference script
 └── README.md
-
 ````
 
 ---
@@ -66,25 +65,25 @@ Install dependencies using:
 pip install torch torchvision torchaudio
 pip install opencv-python numpy kornia
 pip install segmentation-models-pytorch
-````
+```
 
-> **Note:** CUDA is recommended for training.
+> **Note:** CUDA is strongly recommended for training.
 
 ---
 
 ## 🚀 Training
 
-To start training:
+To start training the model:
 
 ```bash
 python train.py
 ```
 
-Training details:
+### Training Details
 
 * Mixed precision training (AMP)
 * AdamW optimizer
-* ReduceLROnPlateau scheduler
+* ReduceLROnPlateau learning rate scheduler
 * Automatic checkpoint saving:
 
   * `latest_bilateral_model.pth`
@@ -96,7 +95,7 @@ Training details:
 
 The total loss is a weighted combination of:
 
-* **L1 Loss** – pixel-wise reconstruction
+* **L1 Loss** – pixel-wise reconstruction accuracy
 * **SSIM Loss** – perceptual structural similarity
 * **Total Variation (TV) Regularization**
 
@@ -105,9 +104,9 @@ The total loss is a weighted combination of:
 
 This encourages:
 
-* Visual fidelity
+* High visual fidelity
 * Smooth local transitions
-* Stable curve behavior
+* Stable and monotonic RGB curves
 
 ---
 
@@ -122,11 +121,11 @@ This encourages:
 
 ## ✨ Highlights
 
-* Fully differentiable enhancement pipeline
+* Fully differentiable image enhancement pipeline
 * Learned RGB curves instead of fixed filters
 * Combines global consistency with local detail refinement
 * Robust to lighting variations
-* Designed for high-resolution images
+* Designed for high-resolution image processing
 
 ---
 
@@ -134,17 +133,31 @@ This encourages:
 
 * This repository focuses on **training and experimentation**
 * Core ideas are implemented for research and controlled usage
-* Model weights and internal strategies may be adapted for production use
+* Model weights and internal strategies may be adapted for production systems
 
 ---
 
 ## 🙋‍♂️ Author
 
-**Syed Muhammad Faizan Ali**  
-📍 Islamabad, Pakistan  
-📧 faizandev666@gmail.com  
-🔗 [GitHub](https://github.com/Slayer9966) | [LinkedIn](https://www.linkedin.com/in/faizan-ali-7b4275297/)
+**Syed Muhammad Faizan Ali**
+📍 Islamabad, Pakistan
+📧 [faizandev666@gmail.com](mailto:faizandev666@gmail.com)
+🔗 GitHub | LinkedIn
 
+---
+
+## 📜 License
+
+This project is intended for educational and research purposes.
 
 ```
 
+---
+
+If you want next:
+- 🔹 a **public-safe version** (less technical)
+- 🔹 an **inference usage section**
+- 🔹 or a **research-paper-style README**
+
+Just tell me 👍
+```
