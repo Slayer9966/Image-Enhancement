@@ -1,8 +1,18 @@
 
+### ✅ What you SHOULD do
+- Paste the content **directly** into `README.md`
+- Use code blocks **only where needed** (`bash`, `text`)
+- No outer wrapper
 
 ---
 
-````markdown
+## ✅ COPY-PASTE THIS (FINAL, CORRECT README)
+
+Paste **exactly this** into `README.md` — nothing before it, nothing after it.
+
+---
+
+```markdown
 # Hybrid Image Enhancement using Learned RGB Curves & Bilateral Grid
 
 This project implements a **deep learning–based image enhancement system** that improves fine image details while preserving natural colors.  
@@ -53,7 +63,7 @@ Both components are predicted jointly by a neural network and applied using diff
 ├── train.py                    # Training script
 ├── inference.py                # Inference script
 └── README.md
-````
+```
 
 ---
 
@@ -80,14 +90,12 @@ python train.py
 ```
 
 ### Training Details
-
-* Mixed precision training (AMP)
-* AdamW optimizer
-* ReduceLROnPlateau learning rate scheduler
-* Automatic checkpoint saving:
-
-  * `latest_bilateral_model.pth`
-  * `best_bilateral_model.pth`
+- Mixed precision training (AMP)
+- AdamW optimizer
+- ReduceLROnPlateau learning rate scheduler
+- Automatic checkpoint saving:
+  - `latest_bilateral_model.pth`
+  - `best_bilateral_model.pth`
 
 ---
 
@@ -95,69 +103,75 @@ python train.py
 
 The total loss is a weighted combination of:
 
-* **L1 Loss** – pixel-wise reconstruction accuracy
-* **SSIM Loss** – perceptual structural similarity
-* **Total Variation (TV) Regularization**
-
-  * Spatial smoothness
-  * Intensity-depth smoothness for the bilateral grid
+- **L1 Loss** – pixel-wise reconstruction accuracy
+- **SSIM Loss** – perceptual structural similarity
+- **Total Variation (TV) Regularization**
+  - Spatial smoothness
+  - Intensity-depth smoothness for the bilateral grid
 
 This encourages:
-
-* High visual fidelity
-* Smooth local transitions
-* Stable and monotonic RGB curves
+- High visual fidelity
+- Smooth local transitions
+- Stable and monotonic RGB curves
 
 ---
 
 ## 🖼️ Data Handling
 
-* Images are resized while preserving aspect ratio
-* Reflection padding is used to reach a fixed square resolution
-* Optional horizontal flip augmentation
-* Input and GT images are normalized to `[0, 1]`
+- Images are resized while preserving aspect ratio
+- Reflection padding is used to reach a fixed square resolution
+- Optional horizontal flip augmentation
+- Input and GT images are normalized to `[0, 1]`
 
 ---
 
 ## ✨ Highlights
 
-* Fully differentiable image enhancement pipeline
-* Learned RGB curves instead of fixed filters
-* Combines global consistency with local detail refinement
-* Robust to lighting variations
-* Designed for high-resolution image processing
+- Fully differentiable image enhancement pipeline
+- Learned RGB curves instead of fixed filters
+- Combines global consistency with local detail refinement
+- Robust to lighting variations
+- Designed for high-resolution image processing
 
 ---
 
 ## 🔒 Notes
 
-* This repository focuses on **training and experimentation**
-* Core ideas are implemented for research and controlled usage
-* Model weights and internal strategies may be adapted for production systems
+- This repository focuses on **training and experimentation**
+- Core ideas are implemented for research and controlled usage
+- Model weights and internal strategies may be adapted for production systems
 
 ---
 
 ## 🙋‍♂️ Author
 
-**Syed Muhammad Faizan Ali**
-📍 Islamabad, Pakistan
+**Syed Muhammad Faizan Ali**  
+📍 Islamabad, Pakistan  
 📧 [faizandev666@gmail.com](mailto:faizandev666@gmail.com)
-🔗 GitHub | LinkedIn
 
 ---
 
 ## 📜 License
 
 This project is intended for educational and research purposes.
-
 ```
 
 ---
 
-If you want next:
-- 🔹 a **public-safe version** (less technical)
-- 🔹 an **inference usage section**
-- 🔹 or a **research-paper-style README**
+## 🧠 Golden Rule (Remember This Forever)
 
-Just tell me 👍
-```
+- ❌ Never wrap the **entire README** in ```markdown
+- ✅ Only wrap:
+  - commands → ```bash
+  - directory trees → ```text
+  - code → ```python
+
+---
+
+If you want next, I can:
+- 🔐 Make a **public / IP-safe README**
+- 🚀 Add a **clean inference section**
+- 📄 Convert this into a **paper-style README**
+- ⭐ Optimize it for **GitHub stars & recruiters**
+
+Just say the word.
