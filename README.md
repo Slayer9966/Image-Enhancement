@@ -46,8 +46,7 @@ The enhancement pipeline is composed of two complementary components:
 │
 ├── models/
 │   ├── latest_bilateral_model.pth
-│   └── best_bilateral_model.pth
-│
+│   
 ├── train.py                    # Training script
 ├── inference.py                # Inference script
 └── README.md
