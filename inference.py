@@ -118,32 +118,38 @@ def process_image_highres(model, image_path, device):
 
 def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model_path = "models/latest_bilateral_model.pth"
-    input_folder = "E:\ApixVisuals\PACT"
-    output_folder = "HighRes_Bilateral_Results"
-    os.makedirs(output_folder, exist_ok=True)
+    model_path = "models1/latest_bilateral_model.pth"
+    
+    # Define a single image target path
+    input_image_path = "input3.jpeg"  # Change this to your exact image file path
+    output_image_path = "polished_prepped_for_flux.png"  # Target output path
+    
+    # Quick sanity check to ensure the file exists before waking up the GPU
+    if not os.path.exists(input_image_path):
+        print(f"❌ Error: The input image could not be found at: {input_image_path}")
+        return
 
+    # Initialize your custom model
     model = HybridEnhancer().to(device)
     model.load_state_dict(torch.load(model_path, map_location=device))
     model.eval()
     print(f"✅ Model loaded. Ready for High-Res processing on {device}.")
 
-    extensions = (".jpg", ".jpeg", ".png")
-    image_files = [f for f in os.listdir(input_folder) if f.lower().endswith(extensions)]
-
-    for filename in image_files:
-        print(f"🚀 Processing 6K+ Image: {filename}...")
-        try:
-            result = process_image_highres(model, os.path.join(input_folder, filename), device)
-            cv2.imwrite(os.path.join(output_folder, filename), result)
-        except RuntimeError as e:
-            if "out of memory" in str(e):
-                print(f"❌ GPU Memory Full for {filename}. Image is likely too large for your VRAM.")
-                torch.cuda.empty_cache()
-            else:
-                raise e
-
-    print(f"✨ Done! Results saved in {output_folder}")
+    print(f"🚀 Processing 6K+ Image: {os.path.basename(input_image_path)}...")
+    try:
+        # Run your custom bilateral grid / learned curve high-res processor
+        result = process_image_highres(model, input_image_path, device)
+        
+        # Save the single result directly to disk
+        cv2.imwrite(output_image_path, result)
+        print(f"✨ Done! Single asset saved successfully at: {os.path.abspath(output_image_path)}")
+        
+    except RuntimeError as e:
+        if "out of memory" in str(e):
+            print("❌ GPU Memory Full. The 6K+ image scale is too large for your current VRAM allocations.")
+            torch.cuda.empty_cache()
+        else:
+            raise e
 
 if __name__ == "__main__":
     main()
